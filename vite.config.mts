@@ -1,21 +1,27 @@
 import { sveltekit } from 'npm:@sveltejs/kit/vite';
+import { extractorSvelte, presetAttributify, presetUno, transformerDirectives } from 'npm:unocss';
+import UnoCSS from 'npm:unocss/vite';
 import type { UserConfig } from 'npm:vite';
-import UnoCSS from 'npm:unocss/vite'
-import { presetUno, presetIcons, extractorSvelte } from 'npm:unocss';
-// import presetWebFonts from 'npm:@unocss/preset-web-fonts';
-// import 'npm:@iconify/json';
+
+import "npm:@iconify/svelte";
 
 
 const config: UserConfig = {
+	resolve: {
+		alias: {
+			'@iconify/svelte': '@iconify/svelte'
+		},
+	},
 	plugins: [
-		sveltekit(),
 		UnoCSS({
+			transformers: [transformerDirectives()],
 			extractors: [extractorSvelte],
-			mode: 'svelte-scoped',
 			presets: [
-				presetUno(), presetIcons()
-			],
-		})
+				presetAttributify(),
+				presetUno(),
+			]
+		}),
+		sveltekit(),
 	]
 };
 
