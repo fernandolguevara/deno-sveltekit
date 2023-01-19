@@ -11,9 +11,10 @@
    const deleteTodo = (i:number) => todos = todos.filter(todo => todos.indexOf(todo) !== i)
 </script>
 
-<div style="display: grid; gap: 20px;">
-   <h2>TODO LIST</h2>
+<div class="i-ic:sharp-rocket-launch text-red-900"></div>
 
+<div class="grid gap-5">
+   <h2 class="text-red">TODO LIST</h2>
    <!-- add todo -->
    <div>
       <h3>Add a todo</h3>
@@ -26,7 +27,7 @@
    <!-- todos container -->
    <div>
       {#each todos as todo, i }
-      <div style="display: flex; gap: 4px; align-items: center; margin: 10px 0;">
+      <div class="flex gap-1 items-center my-2.5">
          <input type="checkbox" bind:checked={todo.checked}>
          {#if todo.isEditing}
             <input type="text" bind:value={todo.content}>
